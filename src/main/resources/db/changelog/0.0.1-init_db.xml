@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="dkaimov" id="1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <sql>
+            create table job (
+                 id varchar(255) not null,
+                 time_create timestamp,
+                 time_update timestamp,
+                 group_id varchar(255),
+                 period integer,
+                 type varchar(255),
+                 primary key (id)
+            );
+            create table job_history (
+                 id varchar(255) not null,
+                 time_create timestamp,
+                 time_update timestamp,
+                 error_message varchar(255),
+                 group_id varchar(255),
+                 next_run timestamp,
+                 status integer,
+                 type varchar(255),
+                 job_id varchar(255) not null,
+                 primary key (id)
+            );
+
+            alter table job_history
+                add constraint FK1qikydvi1h4879h5mkvpddnu5
+                    foreign key (job_id)
+                        references job;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,36 @@
+springdoc:
+    swagger-ui:
+        path: /swagger-ui.html
+
+spring:
+    datasource:
+        url: jdbc:h2:mem:mydb
+        username: sa
+        password: password
+        driverClassName: org.h2.Driver
+    liquibase:
+        change-log: classpath:db/changelog/db.changelog-master.xml
+    jpa:
+        generate-ddl: true
+        hibernate:
+            ddl-auto: create
+#        properties:
+#            hibernate:
+#                show_sql: true
+#                use_sql_comments: true
+#                format_sql: true
+#logging:
+#    level:
+#        org:
+#            hibernate:
+#                SQL: TRACE
+#                type:
+#                    descriptor:
+#                        sql:
+#                            BasicBinder: TRACE
+job:
+    concurrency:
+        scheduler:
+            pool-size: 1
+        task-executor:
+            pool-size: 1
